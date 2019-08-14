@@ -144,7 +144,7 @@ int main(void)
   MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
 
-  printf("START Applications\r\n");
+  printf("START Applications\r\n");			// Must call printf() before FreeRTOS task started.
   /* USER CODE END 2 */
 
   /* USER CODE BEGIN RTOS_MUTEX */
