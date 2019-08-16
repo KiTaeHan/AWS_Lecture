@@ -26,9 +26,15 @@
 #endif
 
 #if defined(TARGET_B_L475E_IOT01)
-#include "stm32l4xx_hal.h"
-#define DataRdyIRQ	EXTI1_IRQn
-#define SPI_INTERFACE_PRIO	configMAX_SYSCALL_INTERRUPT_PRIORITY
+	#include "stm32l4xx_hal.h"
+	#if 0
+		#define DataRdyIRQ	EXTI1_IRQn
+		#define SPI_INTERFACE_PRIO	configMAX_SYSCALL_INTERRUPT_PRIORITY
+	#else
+		#include "main.h"
+		extern SPI_HandleTypeDef hspi3;
+		#define hspi hspi3
+	#endif
 #endif
 	
 #include <core_cm4.h>
@@ -39,12 +45,6 @@
 #ifdef GENERATOR_AWS_CLOUD
 #include "mbedtls/x509_crt.h"
 #endif
-
-/* Global variables  --------------------------------------------------------*/
-SPI_HandleTypeDef hspi;
-
-/* Function  definitions  --------------------------------------------------------*/
-static void SPI_WIFI_MspInit(SPI_HandleTypeDef* hspi);
 
 /* Private define ------------------------------------------------------------*/
 #if defined(TARGET_STM32F413H_DISCOVERY)
@@ -157,11 +157,16 @@ int32_t wifi_probe(void **ll_drv_context);
 ES_WIFIObject_t    EsWifiObj;
 
 
-
-
 /*******************************************************************************
                        COM Driver Interface (SPI)
 *******************************************************************************/
+#if 0
+/* Global variables  --------------------------------------------------------*/
+SPI_HandleTypeDef hspi;
+
+/* Function  definitions  --------------------------------------------------------*/
+static void SPI_WIFI_MspInit(SPI_HandleTypeDef* hspi);
+
 /**
   * @brief  Initialize SPI MSP
   * @param  hspi: SPI handle
@@ -358,6 +363,24 @@ static int8_t SPI_WIFI_Init(uint16_t mode)
 
   return rc;
 }
+#else
+static int8_t SPI_WIFI_Init(uint16_t mode)
+{
+	int8_t  rc=0;
+
+	if (mode == ES_WIFI_INIT)
+	{
+		WIFI_SPI3_Init();
+
+		/* first call used for calibration */
+		SPI_WIFI_DelayUs(10);
+	}
+
+	rc= SPI_WIFI_ResetModule();
+
+	return rc;
+}
+#endif
 
 
 static int8_t SPI_WIFI_ResetModule(void)

@@ -25,6 +25,9 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include <stdio.h>
+
+#include "net_conf.h"
+#include "network_connect.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -106,6 +109,11 @@ GETCHAR_PROTOTYPE
 	;
   }
   return ch;
+}
+
+void WIFI_SPI3_Init(void)
+{
+	MX_SPI3_Init();
 }
 /* USER CODE END 0 */
 
@@ -472,6 +480,8 @@ void StartDefaultTask(void const * argument)
     
 
   /* USER CODE BEGIN 5 */
+	network_init();
+
   /* Infinite loop */
 	for(;;)
 	{
@@ -501,6 +511,20 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 
   /* USER CODE END Callback 1 */
 }
+
+/* USER CODE BEGIN 7 */
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
+{
+	switch (GPIO_Pin)
+	{
+		case (GPIO_PIN_1):
+		{
+			SPI_WIFI_ISR();
+			break;
+		}
+	}
+}
+/* USER CODE END 7 */
 
 /**
   * @brief  This function is executed in case of error occurrence.
