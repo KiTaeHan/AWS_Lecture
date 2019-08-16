@@ -28,6 +28,7 @@
 #if defined(TARGET_B_L475E_IOT01)
 #include "stm32l4xx_hal.h"
 #define DataRdyIRQ	EXTI1_IRQn
+#define SPI_INTERFACE_PRIO	configMAX_SYSCALL_INTERRUPT_PRIORITY
 #endif
 	
 #include <core_cm4.h>

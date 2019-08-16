@@ -32,6 +32,7 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/AWS_Lecture/Drivers/BSP/Components/es_wifi}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/AWS_Lecture/Middlewares/ST/STM32_Connect_Library/Includes}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/AWS_Lecture/Middlewares/ST/STM32_Connect_Library/net_conf}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/AWS_Lecture/Middlewares/Third_Party/mbedTLS/include}&quot;"/>
 								</option>
 								<option id="com.atollic.truestudio.gcc.symbols.defined.1670122205" name="Defined symbols" superClass="com.atollic.truestudio.gcc.symbols.defined"/>
 								<option id="com.atollic.truestudio.as.general.otherflags.51384659" name="Other options" superClass="com.atollic.truestudio.as.general.otherflags" value="" valueType="string"/>
@@ -53,6 +54,7 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/AWS_Lecture/Drivers/BSP/Components/es_wifi}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/AWS_Lecture/Middlewares/ST/STM32_Connect_Library/Includes}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/AWS_Lecture/Middlewares/ST/STM32_Connect_Library/net_conf}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/AWS_Lecture/Middlewares/Third_Party/mbedTLS/include}&quot;"/>
 								</option>
 								<option id="com.atollic.truestudio.gcc.symbols.defined.1670122205" name="Defined symbols" superClass="com.atollic.truestudio.gcc.symbols.defined" valueType="definedSymbols">
 									<listOptionValue builtIn="false" value="__weak=__attribute__((weak))"/>
@@ -60,6 +62,8 @@
 									<listOptionValue builtIn="false" value="USE_HAL_DRIVER"/>
 									<listOptionValue builtIn="false" value="STM32L475xx"/>
 									<listOptionValue builtIn="false" value="MBEDTLS_CONFIG_FILE=&lt;mbedtls_config.h&gt;"/>
+									<listOptionValue builtIn="false" value="TARGET_B_L475E_IOT01"/>
+									<listOptionValue builtIn="false" value="NET_USE_RTOS"/>
 								</option>
 								<option id="com.atollic.truestudio.common_options.target.endianess.1854274048" name="Endianess" superClass="com.atollic.truestudio.common_options.target.endianess" value="com.atollic.truestudio.common_options.target.endianess.little" valueType="enumerated"/>
 								<option id="com.atollic.truestudio.common_options.target.mcpu.191909026" name="Microcontroller" superClass="com.atollic.truestudio.common_options.target.mcpu" value="STM32L475VG" valueType="enumerated"/>
@@ -179,6 +183,7 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/AWS_Lecture/Drivers/BSP/Components/es_wifi}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/AWS_Lecture/Middlewares/ST/STM32_Connect_Library/Includes}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/AWS_Lecture/Middlewares/ST/STM32_Connect_Library/net_conf}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/AWS_Lecture/Middlewares/Third_Party/mbedTLS/include}&quot;"/>
 								</option>
 								<option id="com.atollic.truestudio.gcc.symbols.defined.1670122205" name="Defined symbols" superClass="com.atollic.truestudio.gcc.symbols.defined"/>
 								<option id="com.atollic.truestudio.as.general.otherflags.51384659" name="Other options" superClass="com.atollic.truestudio.as.general.otherflags" value="" valueType="string"/>
@@ -200,6 +205,7 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/AWS_Lecture/Drivers/BSP/Components/es_wifi}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/AWS_Lecture/Middlewares/ST/STM32_Connect_Library/Includes}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/AWS_Lecture/Middlewares/ST/STM32_Connect_Library/net_conf}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/AWS_Lecture/Middlewares/Third_Party/mbedTLS/include}&quot;"/>
 								</option>
 								<option id="com.atollic.truestudio.gcc.symbols.defined.1670122205" name="Defined symbols" superClass="com.atollic.truestudio.gcc.symbols.defined" valueType="definedSymbols">
 									<listOptionValue builtIn="false" value="__weak=__attribute__((weak))"/>
