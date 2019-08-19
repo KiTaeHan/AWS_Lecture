@@ -28,6 +28,7 @@
 
 #include "net_conf.h"
 #include "network_connect.h"
+#include "aws_st_conf.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -481,6 +482,8 @@ void StartDefaultTask(void const * argument)
 
   /* USER CODE BEGIN 5 */
 	network_init();
+	aws_iot_conf_init();
+	aws_iot_run(NULL);
 
   /* Infinite loop */
 	for(;;)

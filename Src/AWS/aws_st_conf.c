@@ -22,15 +22,15 @@ void aws_iot_conf_init(void)
 	memcpy(AWSClientConf.tls_device_cert, keyCLIENT_CERTIFICATE_PEM, sizeof(keyCLIENT_CERTIFICATE_PEM));
 	memcpy(AWSClientConf.tls_device_key, keyCLIENT_PRIVATE_KEY_PEM, sizeof(keyCLIENT_PRIVATE_KEY_PEM));
 
-	PRINTF("thing name: %s\r\n", AWSClientConf.device_name);
-	PRINTF("server name: %s\r\n", AWSClientConf.server_name);
+	printf("thing name: %s\r\n", AWSClientConf.device_name);
+	printf("server name: %s\r\n", AWSClientConf.server_name);
 
-//	PRINTF("AWS IoT SDK Version %d.%d.%d-%s\r\n", VERSION_MAJOR, VERSION_MINOR, VERSION_PATCH, VERSION_TAG);
+//	printf("AWS IoT SDK Version %d.%d.%d-%s\r\n", VERSION_MAJOR, VERSION_MINOR, VERSION_PATCH, VERSION_TAG);
 
 	/*	error
-	PRINTF("root ca: %s\r\n", AWSClientConf.tls_root_ca_cert);
-	PRINTF("device certificate: %s\r\n", AWSClientConf.tls_device_cert);
-	PRINTF("device key: %s\r\n", AWSClientConf.tls_device_key);
+	printf("root ca: %s\r\n", AWSClientConf.tls_root_ca_cert);
+	printf("device certificate: %s\r\n", AWSClientConf.tls_device_cert);
+	printf("device key: %s\r\n", AWSClientConf.tls_device_key);
 	*/
 }
 
@@ -43,7 +43,7 @@ void aws_iot_conf_init(void)
 */
 static void disconnectCallbackHandler(AWS_IoT_Client *pClient, void *data)
 {
-	PRINTF("MQTT Disconnect\n");
+	printf("MQTT Disconnect\n");
 	IoT_Error_t rc = FAILURE;
 
 	if (NULL == data)
@@ -55,20 +55,20 @@ static void disconnectCallbackHandler(AWS_IoT_Client *pClient, void *data)
 
 	if (aws_iot_is_autoreconnect_enabled(client))
 	{
-		PRINTF("Auto Reconnect is enabled, Reconnecting attempt will start now\n");
+		printf("Auto Reconnect is enabled, Reconnecting attempt will start now\n");
 	}
 	else
 	{
-		PRINTF("Auto Reconnect not enabled. Starting manual reconnect...\n");
+		printf("Auto Reconnect not enabled. Starting manual reconnect...\n");
 		rc = aws_iot_mqtt_attempt_reconnect(client);
 
 		if (NETWORK_RECONNECTED == rc)
 		{
-			PRINTF("Manual Reconnect Successful\n");
+			printf("Manual Reconnect Successful\n");
 		}
 		else
 		{
-			PRINTF("Manual Reconnect Failed - %d\n", rc);
+			printf("Manual Reconnect Failed - %d\n", rc);
 		}
 	}
 }
@@ -99,7 +99,7 @@ void aws_iot_run(void const *arg)
 	snprintf(cPTopicName, sizeof(cPTopicName), AWS_DEVICE_SHADOW_PRE "%s" AWS_DEVICE_SHADOW_UPDATE_TOPIC, deviceName);
 	snprintf(cSTopicName, sizeof(cSTopicName), AWS_DEVICE_SHADOW_PRE "%s" AWS_DEVICE_SHADOW_UPDATE_ACCEPTED_TOPIC, deviceName);
 
-	PRINTF("AWS IoT SDK Version %d.%d.%d-%s\r\n", VERSION_MAJOR, VERSION_MINOR, VERSION_PATCH, VERSION_TAG);
+	printf("AWS IoT SDK Version %d.%d.%d-%s\r\n", VERSION_MAJOR, VERSION_MINOR, VERSION_PATCH, VERSION_TAG);
 
 	mqttInitParams.enableAutoReconnect = false; /* We enable this later below */
 	mqttInitParams.pHostURL = (char *) serverAddress;
@@ -115,7 +115,7 @@ void aws_iot_run(void const *arg)
 	rc = aws_iot_mqtt_init(&client, &mqttInitParams);
 	if (SUCCESS != rc)
 	{
-		PRINTF("aws_iot_mqtt_init returned error : %d\n", rc);
+		printf("aws_iot_mqtt_init returned error : %d\n", rc);
 		return;
 	}
 
@@ -129,19 +129,19 @@ void aws_iot_run(void const *arg)
 	do
 	{
 		connectCounter++;
-		PRINTF("MQTT connection in progress:   Attempt %d/%d ...\n", connectCounter, MQTT_CONNECT_MAX_ATTEMPT_COUNT);
+		printf("MQTT connection in progress:   Attempt %d/%d ...\n", connectCounter, MQTT_CONNECT_MAX_ATTEMPT_COUNT);
 		rc = aws_iot_mqtt_connect(&client, &connectParams);
 	}
 	while ((rc != SUCCESS) && (connectCounter < MQTT_CONNECT_MAX_ATTEMPT_COUNT));
 
 	if (SUCCESS != rc)
 	{
-		PRINTF("\nError(%d) connecting to %s:%d\n", rc, mqttInitParams.pHostURL, mqttInitParams.port);
+		printf("\nError(%d) connecting to %s:%d\n", rc, mqttInitParams.pHostURL, mqttInitParams.port);
 		return;
 	}
 	else
 	{
-		PRINTF("\nConnected to %s:%d\n", mqttInitParams.pHostURL, mqttInitParams.port);
+		printf("\nConnected to %s:%d\n", mqttInitParams.pHostURL, mqttInitParams.port);
 	}
 
 }

@@ -70,6 +70,7 @@
 									<listOptionValue builtIn="false" value="MBEDTLS_CONFIG_FILE=&lt;mbedtls_config.h&gt;"/>
 									<listOptionValue builtIn="false" value="TARGET_B_L475E_IOT01"/>
 									<listOptionValue builtIn="false" value="NET_USE_RTOS"/>
+									<listOptionValue builtIn="false" value="GENERATOR_AWS_CLOUD"/>
 								</option>
 								<option id="com.atollic.truestudio.common_options.target.endianess.1854274048" name="Endianess" superClass="com.atollic.truestudio.common_options.target.endianess" value="com.atollic.truestudio.common_options.target.endianess.little" valueType="enumerated"/>
 								<option id="com.atollic.truestudio.common_options.target.mcpu.191909026" name="Microcontroller" superClass="com.atollic.truestudio.common_options.target.mcpu" value="STM32L475VG" valueType="enumerated"/>

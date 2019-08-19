@@ -17,10 +17,12 @@
 extern "C" {
 #endif
 
+#include <stdio.h>
 #include <stdbool.h>
 #include <string.h>
 #include <timer_platform.h>
 #include <network_interface.h>
+
 #include "aws_iot_error.h"
 #include "aws_iot_log.h"
 #include "network_platform.h"
@@ -96,7 +98,7 @@ IoT_Error_t iot_tls_connect(Network *pNetwork, TLSConnectParams *params)
   sock = net_socket(NET_AF_INET, NET_SOCK_STREAM, NET_IPPROTO_TCP);
   if (sock < 0)
   {
-    PRINTF(" failed to create a TCP socket  ! net_socket returned %d\n", (int) sock);
+    printf(" failed to create a TCP socket  ! net_socket returned %d\n", (int) sock);
     return SSL_CONNECTION_ERROR;
   }
 
@@ -104,7 +106,7 @@ IoT_Error_t iot_tls_connect(Network *pNetwork, TLSConnectParams *params)
 
   if ((ret |= net_if_gethostbyname(NULL,(sockaddr_t *)&addr,pNetwork->tlsConnectParams.pDestinationURL)) != NET_OK)
   {
-    PRINTF("Could not find hostname ipaddr %s\n",pNetwork->tlsConnectParams.pDestinationURL);
+    printf("Could not find hostname ipaddr %s\n",pNetwork->tlsConnectParams.pDestinationURL);
   }
   else
   {
@@ -126,7 +128,7 @@ IoT_Error_t iot_tls_connect(Network *pNetwork, TLSConnectParams *params)
 
     if (ret |= net_connect(sock, (sockaddr_t *)&addr, sizeof(addr)) != NET_OK)
     {
-      PRINTF("Could not open the socket at %s port %d.\n", pNetwork->tlsConnectParams.pDestinationURL, pNetwork->tlsConnectParams.DestinationPort);
+      printf("Could not open the socket at %s port %d.\n", pNetwork->tlsConnectParams.pDestinationURL, pNetwork->tlsConnectParams.DestinationPort);
     }
 
   }
@@ -161,7 +163,7 @@ IoT_Error_t iot_tls_write(Network *pNetwork, unsigned char *pMsg, size_t len, Ti
           rc = NETWORK_DISCONNECTED_ERROR;
           break;
         default:
-          PRINTF(" failed\n  ! mbedtls_ssl_write returned -0x%x\n\n", -ret);
+          printf(" failed\n  ! mbedtls_ssl_write returned -0x%x\n\n", -ret);
           /* All other negative return values indicate connection needs to be reset.
            * Will be caught in ping request so ignored here */
           rc = NETWORK_SSL_WRITE_ERROR;
@@ -204,7 +206,7 @@ IoT_Error_t iot_tls_read(Network *pNetwork, unsigned char *pMsg, size_t len, Tim
     {
       if(ret < 0)
       {
-        PRINTF("net_recv failed - %d\n", ret);
+        printf("net_recv failed - %d\n", ret);
         return FAILURE;
       }
     }
@@ -236,7 +238,7 @@ IoT_Error_t iot_tls_disconnect(Network *pNetwork)
 {
   if (NET_OK !=  net_closesocket(pNetwork->tlsDataParams.server_fd.fd))
   {
-    PRINTF("net_closesocket() failed.\n");
+    printf("net_closesocket() failed.\n");
   }
 
   return SUCCESS;
