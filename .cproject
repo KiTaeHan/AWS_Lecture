@@ -33,6 +33,9 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/AWS_Lecture/Middlewares/ST/STM32_Connect_Library/Includes}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/AWS_Lecture/Middlewares/ST/STM32_Connect_Library/net_conf}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/AWS_Lecture/Middlewares/Third_Party/mbedTLS/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/AWS_Lecture/Middlewares/Third_Party/AWS/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/AWS_Lecture/Inc/AWS}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/AWS_Lecture/Middlewares/Third_Party/jsmn}&quot;"/>
 								</option>
 								<option id="com.atollic.truestudio.gcc.symbols.defined.1670122205" name="Defined symbols" superClass="com.atollic.truestudio.gcc.symbols.defined"/>
 								<option id="com.atollic.truestudio.as.general.otherflags.51384659" name="Other options" superClass="com.atollic.truestudio.as.general.otherflags" value="" valueType="string"/>
@@ -55,6 +58,9 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/AWS_Lecture/Middlewares/ST/STM32_Connect_Library/Includes}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/AWS_Lecture/Middlewares/ST/STM32_Connect_Library/net_conf}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/AWS_Lecture/Middlewares/Third_Party/mbedTLS/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/AWS_Lecture/Middlewares/Third_Party/AWS/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/AWS_Lecture/Inc/AWS}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/AWS_Lecture/Middlewares/Third_Party/jsmn}&quot;"/>
 								</option>
 								<option id="com.atollic.truestudio.gcc.symbols.defined.1670122205" name="Defined symbols" superClass="com.atollic.truestudio.gcc.symbols.defined" valueType="definedSymbols">
 									<listOptionValue builtIn="false" value="__weak=__attribute__((weak))"/>
@@ -184,6 +190,9 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/AWS_Lecture/Middlewares/ST/STM32_Connect_Library/Includes}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/AWS_Lecture/Middlewares/ST/STM32_Connect_Library/net_conf}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/AWS_Lecture/Middlewares/Third_Party/mbedTLS/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/AWS_Lecture/Middlewares/Third_Party/AWS/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/AWS_Lecture/Inc/AWS}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/AWS_Lecture/Middlewares/Third_Party/jsmn}&quot;"/>
 								</option>
 								<option id="com.atollic.truestudio.gcc.symbols.defined.1670122205" name="Defined symbols" superClass="com.atollic.truestudio.gcc.symbols.defined"/>
 								<option id="com.atollic.truestudio.as.general.otherflags.51384659" name="Other options" superClass="com.atollic.truestudio.as.general.otherflags" value="" valueType="string"/>
@@ -206,6 +215,9 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/AWS_Lecture/Middlewares/ST/STM32_Connect_Library/Includes}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/AWS_Lecture/Middlewares/ST/STM32_Connect_Library/net_conf}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/AWS_Lecture/Middlewares/Third_Party/mbedTLS/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/AWS_Lecture/Middlewares/Third_Party/AWS/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/AWS_Lecture/Inc/AWS}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/AWS_Lecture/Middlewares/Third_Party/jsmn}&quot;"/>
 								</option>
 								<option id="com.atollic.truestudio.gcc.symbols.defined.1670122205" name="Defined symbols" superClass="com.atollic.truestudio.gcc.symbols.defined" valueType="definedSymbols">
 									<listOptionValue builtIn="false" value="__weak=__attribute__((weak))"/>
