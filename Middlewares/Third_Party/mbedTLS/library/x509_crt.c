@@ -2360,12 +2360,15 @@ int mbedtls_x509_crt_verify_with_profile( mbedtls_x509_crt *crt,
     /* Check the chain */
     ret = x509_crt_verify_chain( crt, trust_ca, ca_crl, profile,
                                  ver_chain, &chain_len );
+    printf("ret1: %d\r\n",ret);
     if( ret != 0 )
         goto exit;
 
     /* Build final flags, calling callback on the way if any */
     ret = x509_crt_merge_flags_with_cb( flags,
                                         ver_chain, chain_len, f_vrfy, p_vrfy );
+    printf("ret2: %d\r\n",ret);
+    return ret;
 
 exit:
     /* prevent misuse of the vrfy callback - VERIFY_FAILED would be ignored by

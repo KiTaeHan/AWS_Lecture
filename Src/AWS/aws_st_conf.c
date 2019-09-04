@@ -25,13 +25,12 @@ void aws_iot_conf_init(void)
 	printf("thing name: %s\r\n", AWSClientConf.device_name);
 	printf("server name: %s\r\n", AWSClientConf.server_name);
 
-//	printf("AWS IoT SDK Version %d.%d.%d-%s\r\n", VERSION_MAJOR, VERSION_MINOR, VERSION_PATCH, VERSION_TAG);
-
-	/*	error
-	printf("root ca: %s\r\n", AWSClientConf.tls_root_ca_cert);
-	printf("device certificate: %s\r\n", AWSClientConf.tls_device_cert);
-	printf("device key: %s\r\n", AWSClientConf.tls_device_key);
-	*/
+	/*	error */
+	printf("root ca:\r\n %s\r\n", AWSClientConf.tls_root_ca_cert);
+	printf("device certificate:\r\n %s\r\n", AWSClientConf.tls_device_cert);
+	printf("device key:\r\n %s\r\n", AWSClientConf.tls_device_key);
+	/**/
+	printf("\r\n\r\n");
 }
 
 /**
@@ -133,7 +132,6 @@ void aws_iot_run(void const *arg)
 		rc = aws_iot_mqtt_connect(&client, &connectParams);
 	}
 	while ((rc != SUCCESS) && (connectCounter < MQTT_CONNECT_MAX_ATTEMPT_COUNT));
-
 	if (SUCCESS != rc)
 	{
 		printf("\nError(%d) connecting to %s:%d\n", rc, mqttInitParams.pHostURL, mqttInitParams.port);
@@ -144,4 +142,86 @@ void aws_iot_run(void const *arg)
 		printf("\nConnected to %s:%d\n", mqttInitParams.pHostURL, mqttInitParams.port);
 	}
 
+	rc = aws_iot_mqtt_autoreconnect_set_status(&client, true);
+	if (SUCCESS != rc)
+	{
+		printf("Unable to set Auto Reconnect to true - %d\n", rc);
+		if (aws_iot_mqtt_is_client_connected(&client))
+		{
+			aws_iot_mqtt_disconnect(&client);
+		}
+
+		return;
+	}
+
+	IoT_Publish_Message_Params paramsQOS1 =
+	{
+		.qos = QOS1,
+		.isRetained = 0,
+		.isDup = 0,
+		.id = 0,
+		.payload = NULL,
+		.payloadLen = 0
+	};
+
+	uint8_t count = 10;
+	char* cPayload = NULL;
+
+    /* create desired message */
+    if (!cPayload)
+    {
+		cPayload = malloc(400);
+		if (!cPayload)
+		{
+			printf("Unable to allocate memory for the Payload\n");
+		}
+    }
+
+	while( (NETWORK_ATTEMPTING_RECONNECT == rc || NETWORK_RECONNECTED == rc || SUCCESS == rc) && count)
+	{
+		if(cPayload)
+		{
+			snprintf(cPayload, 400, "{\"message\" : \"Hello %d from my node\"}", count);
+			paramsQOS1.payload = cPayload;
+			paramsQOS1.payloadLen = strlen(cPayload) + 1;
+		}
+		else break;
+
+		/* Max time the yield function will wait for read messages */
+		rc = aws_iot_mqtt_yield(&client, 1000);
+
+		if (NETWORK_ATTEMPTING_RECONNECT == rc)
+		{
+			/* Delay to let the client reconnect */
+			osDelay(1000);
+			printf("Attempting to reconnect\n");
+			/* If the client is attempting to reconnect we will skip the rest of the loop */
+			continue;
+		}
+		if (NETWORK_RECONNECTED == rc)
+		{
+			printf("Reconnected.\n");
+		}
+
+		do
+		{
+			rc = aws_iot_mqtt_publish(&client, cPTopicName, strlen(cPTopicName), &paramsQOS1);
+			if (rc == SUCCESS)
+			{
+				printf("\nPublished to topic %s:", cPTopicName);
+				printf("%s\n", cPayload);
+			}
+		} while (MQTT_REQUEST_TIMEOUT_ERROR == rc);
+
+		count--;
+	}
+
+    /* Wait for all the messages to be received */
+    aws_iot_mqtt_yield(&client, 10);
+    rc = aws_iot_mqtt_disconnect(&client);
+
+	if (cPayload)
+	{
+		free(cPayload);
+	}
 }

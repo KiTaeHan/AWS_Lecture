@@ -488,7 +488,7 @@ void StartDefaultTask(void const * argument)
   /* Infinite loop */
 	for(;;)
 	{
-		printf("test\r\n");
+		//printf("test\r\n");
 		osDelay(1000);
 	}
   /* USER CODE END 5 */ 

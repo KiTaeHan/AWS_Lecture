@@ -27,7 +27,7 @@ extern "C" {
 "o/ufQJVtMVT8QtPHRh8jrdkPSHCa2XV4cdFyQzR1bldZwgJcJmApzyMZFo6IQ6XU\n"\
 "5MsI+yMRQ+hDKXJioaldXgjUkK642M4UwtBV8ob2xJNDd2ZhwLnoQdeXeGADbkpy\n"\
 "rqXRfboQnoZsG4q5WTP468SQvvG5\n"\
-"-----END CERTIFICATE-----\n"
+"-----END CERTIFICATE-----"
 
 
 #define USER_SERVER_NAME	"a3os051wh7h93w-ats.iot.ap-northeast-2.amazonaws.com"
