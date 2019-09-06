@@ -8,7 +8,7 @@
 
 #define MQTT_CONNECT_MAX_ATTEMPT_COUNT		3
 
-static char cPTopicName_data[MAX_SHADOW_TOPIC_LENGTH_BYTES] = ""; /* Publish Topic */
+//static char cPTopicName_data[MAX_SHADOW_TOPIC_LENGTH_BYTES] = ""; /* Publish Topic */
 static char cPTopicName[MAX_SHADOW_TOPIC_LENGTH_BYTES] = ""; /* Publish Topic */
 static char cSTopicName[MAX_SHADOW_TOPIC_LENGTH_BYTES] = ""; /* Subscribe Topic */
 
@@ -94,7 +94,7 @@ void aws_iot_run(void const *arg)
 	pClientCert = AWSClientConf.tls_device_cert;
 	pClientPrivateKey = AWSClientConf.tls_device_key;
 
-	snprintf(cPTopicName_data, sizeof(cPTopicName_data), AWS_DEVICE_SHADOW_PRE "%s" AWS_DEVICE_SHADOW_UPDATE_TOPIC, deviceName);
+//	snprintf(cPTopicName_data, sizeof(cPTopicName_data), AWS_DEVICE_SHADOW_PRE "%s" AWS_DEVICE_SHADOW_UPDATE_TOPIC, deviceName);
 	snprintf(cPTopicName, sizeof(cPTopicName), AWS_DEVICE_SHADOW_PRE "%s" AWS_DEVICE_SHADOW_UPDATE_TOPIC, deviceName);
 	snprintf(cSTopicName, sizeof(cSTopicName), AWS_DEVICE_SHADOW_PRE "%s" AWS_DEVICE_SHADOW_UPDATE_ACCEPTED_TOPIC, deviceName);
 
@@ -181,9 +181,10 @@ void aws_iot_run(void const *arg)
 	{
 		if(cPayload)
 		{
-			snprintf(cPayload, 400, "{\"message\" : \"Hello %d from my node\"}", count);
+			memset(cPayload, 0, 400);
+			snprintf(cPayload, 400, "{\"message\":\"Hello %ld from my node\"}", count);
 			paramsQOS1.payload = cPayload;
-			paramsQOS1.payloadLen = strlen(cPayload) + 1;
+			paramsQOS1.payloadLen = strlen(cPayload);
 		}
 		else break;
 
@@ -208,8 +209,8 @@ void aws_iot_run(void const *arg)
 			rc = aws_iot_mqtt_publish(&client, cPTopicName, strlen(cPTopicName), &paramsQOS1);
 			if (rc == SUCCESS)
 			{
-				printf("\nPublished to topic %s:", cPTopicName);
-				printf("%s\n", cPayload);
+				printf("\nPublished to topic %s:\r\n", cPTopicName);
+				printf("\t%s\r\n", cPayload);
 			}
 		} while (MQTT_REQUEST_TIMEOUT_ERROR == rc);
 
